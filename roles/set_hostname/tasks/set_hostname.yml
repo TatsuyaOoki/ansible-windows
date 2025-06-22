@@ -1,7 +1,7 @@
 ---
 - name: Setting Hostname
   ansible.windows.win_hostname:
-    name: "{{ inventory_hostname }}"
+    name: "{{ set_hostname_name }}"
   register: result_set_hostname
 
 - name: Execution when host name is changed
