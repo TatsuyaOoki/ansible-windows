@@ -1,0 +1,11 @@
+---
+- name: Setup Windows Server
+  hosts: WindowsServers
+  pre_tasks:
+    - name: Pre Check OS
+      ansible.builtin.assert:
+        that:
+          - ansible_os_family == "Windows"
+        fail_msg: Target device is not Windows
+  roles:
+    - set_hostname

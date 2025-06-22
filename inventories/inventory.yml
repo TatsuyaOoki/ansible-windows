@@ -1,0 +1,18 @@
+---
+WindowsServers:
+  hosts:
+    WIN2025N01:
+      ansible_host: 192.168.5.128
+      ansible_user: Administrator
+      ansible_password: !vault |
+                $ANSIBLE_VAULT;1.1;AES256
+                33613762623533303365653238653830616537373737353736663039326564396264633034636562
+                6135386636613664636531323130393837353661653332370a663562323135633535383762326361
+                36363566366333316562316464656362373239363261636138333133336665313031653961666563
+                3639303733373537320a613036633532633836303364323436626336653062356265366235393837
+                3630
+      ansible_connection: winrm
+      ansible_winrm_transport: ntlm
+      ansible_winrm_scheme: http
+      ansible_port: 5985
+      ansible_winrm_server_cert_validation: ignore

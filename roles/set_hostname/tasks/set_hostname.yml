@@ -1,0 +1,22 @@
+---
+- name: Setting Hostname
+  ansible.windows.win_hostname:
+    name: "{{ inventory_hostname }}"
+  register: result_set_hostname
+
+- name: Execution when host name is changed
+  when: result_set_hostname.reboot_required
+  block:
+    - name: Reboot
+      ansible.windows.win_reboot:
+        test_command: 'exit (Get-Service -Name Server).Status -ne "Running"'
+
+    - name: Get hostname
+      ansible.builtin.setup:
+        filter:
+          - ansible_hostname
+
+    - name: Diff hostname
+      ansible.utils.fact_diff:
+        before: "{{ result_set_hostname.old_name }}"
+        after: "{{ ansible_hostname }}"
