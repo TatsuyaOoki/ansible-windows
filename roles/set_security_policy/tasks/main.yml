@@ -1,0 +1,3 @@
+---
+- name: Include set security policy taskfile
+  ansible.builtin.include_tasks: set_security_policy.yml

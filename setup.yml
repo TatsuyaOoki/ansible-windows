@@ -9,3 +9,4 @@
         fail_msg: Target device is not Windows
   roles:
     - set_hostname
+    - set_security_policy
