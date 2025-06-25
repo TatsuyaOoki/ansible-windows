@@ -1,0 +1,36 @@
+---
+- name: Disable password complexity requirement
+  community.windows.win_security_policy:
+    section: System Access
+    key: PasswordComplexity
+    value: 0
+
+- name: Set minimum password length to 8
+  community.windows.win_security_policy:
+    section: System Access
+    key: MinimumPasswordLength
+    value: 8
+
+- name: Set the maximum password age
+  community.windows.win_security_policy:
+    section: System Access
+    key: MaximumPasswordAge
+    value: 90
+
+- name: Set the lockout bad count
+  community.windows.win_security_policy:
+    section: System Access
+    key: LockoutBadCount
+    value: 5
+
+- name: Enable system events
+  community.windows.win_security_policy:
+    section: Event Audit
+    key: AuditSystemEvents
+    value: 1
+
+- name: Enable logon events
+  community.windows.win_security_policy:
+    section: Event Audit
+    key: AuditLogonEvents
+    value: 3
