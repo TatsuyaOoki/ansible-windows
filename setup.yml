@@ -10,3 +10,4 @@
   roles:
     - set_hostname
     - set_security_policy
+    - create_local_users
