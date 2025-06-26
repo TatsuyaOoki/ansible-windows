@@ -1,0 +1,19 @@
+---
+- name: Create Local groups
+  ansible.windows.win_group:
+    name: "{{ create_local_users_readonly_group_name }}"
+
+- name: Add group to built-in viewer groups
+  ansible.windows.win_group_membership:
+    name: "{{ item }}"
+    members:
+      - "{{ create_local_users_readonly_group_name }}"
+  loop: "{{ create_local_users_readonly_groups }}"
+
+- name: Create Local User
+  ansible.windows.win_user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    password: "{{ item.password }}"
+    state: present
+  loop: "{{ create_local_users_list }}"

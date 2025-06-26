@@ -1,0 +1,13 @@
+---
+argument_specs:
+  main:
+    options:
+      create_local_users_list:
+        type: "list"
+        required: true
+      create_local_users_readonly_group_name:
+        type: "str"
+        required: true
+      create_local_users_readonly_groups:
+        type: "list"
+        required: true
