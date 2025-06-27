@@ -1,0 +1,42 @@
+---
+- name: Edit the registry to enable automatic updates
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: NoAutoUpdate
+    data: 0
+    datatype: dword
+    state: present
+
+- name: Check registry automatic updates
+  ansible.windows.win_reg_stat:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: NoAutoUpdate
+  register: auto_updates_registry_state
+
+- name: Print registry key automatic updates
+  ansible.builtin.debug:
+    msg:
+      - "path: HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU"
+      - "name: NoAutoUpdate"
+      - "value: {{ auto_updates_registry_state.value }}"
+
+- name: Edit the registry key to add access to all features of Windows Update
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    name: SetDisableUXWUAccess
+    data: 0
+    datatype: dword
+    state: present
+
+- name: Check registry add access to all features of Windows Update
+  ansible.windows.win_reg_stat:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    name: SetDisableUXWUAccess
+  register: update_features_registry_state
+
+- name: Print registry key add access to all features of Windows Update
+  ansible.builtin.debug:
+    msg:
+      - "path: HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU"
+      - "name: NoAutoUpdate"
+      - "value: {{ update_features_registry_state.value }}"
