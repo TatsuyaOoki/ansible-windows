@@ -20,3 +20,5 @@ xxxx
 
 > [!WARNING]
 > あれば記載
+
+close #

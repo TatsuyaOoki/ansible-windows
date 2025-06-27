@@ -1,0 +1,3 @@
+---
+- name: Include disable windows update taskfile
+  ansible.builtin.include_tasks: disable_windows_update.yml
